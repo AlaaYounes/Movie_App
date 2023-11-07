@@ -70,13 +70,16 @@ class _MovieContainerState extends State<MovieContainer> {
                     padding: const EdgeInsets.all(15),
                     child: ListView.separated(
                         itemBuilder: (context, index) => InkWell(
-                              onTap: () {
+                              onTap: () async {
+                                bool flag = await viewModel
+                                    .checkMovie('${movieList[index].id!}');
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => MovieDetails(
                                               movieId:
                                                   '${movieList[index].id!}',
+                                              isWatched: flag,
                                             )));
                               },
                               child: MovieCard(

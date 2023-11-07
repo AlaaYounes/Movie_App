@@ -48,26 +48,27 @@ class MovieViewModel extends Cubit<MovieStates> {
     emit(MovieWatchTrailerState());
   }
 
-  Future<bool> checkMovie(WatchListMovie movie) async {
-    bool x = false;
+  Future<bool> checkMovie(String id) async {
     List<WatchListMovie> movieList =
         await FirebaseManager.getMoviesFromFireStore();
-    for (WatchListMovie element in movieList) {
-      if (movie.id == element.id) {
-        x = true;
-        break;
-      } else {
-        x = false;
+    for (var element in movieList) {
+      print(id.runtimeType);
+      print(element.id.runtimeType);
+      print('$id ${element.id}');
+      if (id == element.id.toString()) {
+        return true;
       }
     }
-    return x;
+    return false;
   }
 
   addToWatchlist(WatchListMovie movie) async {
-    Future<bool> flag = checkMovie(movie);
-    if (flag == true) {
-      return;
-    } else {
+    dynamic flag = await checkMovie('${movie.id!}');
+    print('======================');
+    print(flag);
+    print('======================');
+
+    if (flag == false) {
       FirebaseManager.addMovieToFireStore(movie);
       print(movie.title);
       emit(MovieAddedToFireStore());

@@ -11,9 +11,9 @@ import 'package:movies_app/utils/injection/injection.dart';
 
 class MovieDetails extends StatefulWidget {
   String movieId;
-  bool? isWatched;
+  bool isWatched;
 
-  MovieDetails({required this.movieId, this.isWatched});
+  MovieDetails({required this.movieId, required this.isWatched});
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
@@ -159,7 +159,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     year: movieDetail.releaseDate,
                                     imagePath: movieDetail.posterPath);
                                 viewModel.addToWatchlist(movie);
-                                setState(() {});
                               },
                               child: Stack(
                                 alignment: Alignment.center,
