@@ -41,6 +41,8 @@ dependencies:
   cached_network_image: ^3.2.3
   http: ^0.13.6
   url_launcher: ^6.1.11
+  cloud_firestore: ^4.12.2
+  firebase_core: ^2.21.0
 
 dev_dependencies:
   flutter_test:

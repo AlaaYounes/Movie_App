@@ -29,6 +29,7 @@ class MovieDetailsResponse {
     this.voteCount,
     this.status_message,
     this.success,
+    this.isWatched,
   });
 
   MovieDetailsResponse.fromJson(dynamic json) {
@@ -81,6 +82,7 @@ class MovieDetailsResponse {
     voteCount = json['vote_count'];
     status_message = json['status_message'];
     success = json['success'];
+    isWatched = json['isWatched'];
   }
 
   bool? adult;
@@ -110,6 +112,7 @@ class MovieDetailsResponse {
   num? voteCount;
   String? status_message;
   bool? success;
+  bool? isWatched;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -153,6 +156,7 @@ class MovieDetailsResponse {
     map['vote_count'] = voteCount;
     map['status_message'] = status_message;
     map['success'] = success;
+    map['isWatched'] = isWatched;
     return map;
   }
 }

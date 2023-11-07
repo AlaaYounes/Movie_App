@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/data/firebase/local_firebase.dart';
+import 'package:movies_app/data/model/watchList_movie_response.dart';
 import 'package:movies_app/domain/category/useCase/movie/get_movieDetails.dart';
 import 'package:movies_app/domain/category/useCase/movie/get_movie_by_categoryId.dart';
 import 'package:movies_app/ui/movies_screen/cubit/movie_states.dart';
@@ -44,5 +46,31 @@ class MovieViewModel extends Cubit<MovieStates> {
       throw Exception('Could not launch $url');
     }
     emit(MovieWatchTrailerState());
+  }
+
+  Future<bool> checkMovie(WatchListMovie movie) async {
+    bool x = false;
+    List<WatchListMovie> movieList =
+        await FirebaseManager.getMoviesFromFireStore();
+    for (WatchListMovie element in movieList) {
+      if (movie.id == element.id) {
+        x = true;
+        break;
+      } else {
+        x = false;
+      }
+    }
+    return x;
+  }
+
+  addToWatchlist(WatchListMovie movie) async {
+    Future<bool> flag = checkMovie(movie);
+    if (flag == true) {
+      return;
+    } else {
+      FirebaseManager.addMovieToFireStore(movie);
+      print(movie.title);
+      emit(MovieAddedToFireStore());
+    }
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/data/api/api_constants.dart';
 import 'package:movies_app/data/model/movie_details_response.dart';
+import 'package:movies_app/data/model/watchList_movie_response.dart';
 import 'package:movies_app/ui/movies_screen/cubit/movie_cubit.dart';
 import 'package:movies_app/ui/movies_screen/cubit/movie_states.dart';
 import 'package:movies_app/utils/colors.dart';
@@ -10,8 +11,9 @@ import 'package:movies_app/utils/injection/injection.dart';
 
 class MovieDetails extends StatefulWidget {
   String movieId;
+  bool? isWatched;
 
-  MovieDetails({required this.movieId});
+  MovieDetails({required this.movieId, this.isWatched});
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
@@ -82,24 +84,28 @@ class _MovieDetailsState extends State<MovieDetails> {
                   ),
                   Row(
                     children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: Text(
-                              movieDetail.title!,
-                              style: Theme.of(context).textTheme.titleLarge,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              child: Text(
+                                movieDetail.title!,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Text(
-                              movieDetail.releaseDate!,
-                              style: Theme.of(context).textTheme.titleSmall,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Text(
+                                movieDetail.releaseDate!,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Spacer(),
                       TextButton(
@@ -144,27 +150,34 @@ class _MovieDetailsState extends State<MovieDetails> {
                           Positioned(
                             right: MediaQuery.of(context).size.width * .265,
                             bottom: MediaQuery.of(context).size.width * .438,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Icon(Icons.bookmark,
-                                    color: isWatchList == false
-                                        ? AppColor.bookmarkColor.withOpacity(.7)
-                                        : AppColor.yellowColor,
-                                    size: 50),
-                                InkWell(
-                                  onTap: () {
-                                    isWatchList = true;
-                                    setState(() {});
-                                  },
-                                  child: Icon(
-                                    isWatchList == false
+                            child: InkWell(
+                              onTap: () {
+                                WatchListMovie movie = WatchListMovie(
+                                    id: movieDetail.id,
+                                    isWatched: movieDetail.isWatched,
+                                    title: movieDetail.title,
+                                    year: movieDetail.releaseDate,
+                                    imagePath: movieDetail.posterPath);
+                                viewModel.addToWatchlist(movie);
+                                setState(() {});
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Icon(Icons.bookmark,
+                                      color: widget.isWatched == false
+                                          ? AppColor.bookmarkColor
+                                              .withOpacity(.7)
+                                          : AppColor.yellowColor,
+                                      size: 50),
+                                  Icon(
+                                    widget.isWatched == false
                                         ? Icons.add
                                         : Icons.check,
                                     color: AppColor.whiteColor,
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
