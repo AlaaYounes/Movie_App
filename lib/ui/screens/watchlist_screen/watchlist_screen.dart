@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:movies_app/ui/movies_screen/cubit/movie_cubit.dart';
 import 'package:movies_app/ui/movies_screen/movie_card.dart';
 import 'package:movies_app/ui/movies_screen/movie_details.dart';
 import 'package:movies_app/ui/screens/watchlist_screen/cubit.dart';
@@ -73,16 +72,12 @@ class _WatchListState extends State<WatchList> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                bool flag = await MovieViewModel(
-                                        getMoviesFromWatchlistUseCase:
-                                            injectGetMoviesFromWatchlistUseCase())
-                                    .checkMovie(response[index].mId!);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => MovieDetails(
-                                        movieId: '${response[index].id}',
-                                        isWatched: flag),
+                                        movieId: '${response[index].mId}',
+                                        isWatched: true),
                                   ),
                                 );
                               },
