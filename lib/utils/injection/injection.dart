@@ -16,6 +16,9 @@ import 'package:movies_app/domain/useCase/movie/delete_from_watchlist_useCase.da
 import 'package:movies_app/domain/useCase/movie/get_movieDetails.dart';
 import 'package:movies_app/domain/useCase/movie/get_movie_by_categoryId.dart';
 import 'package:movies_app/domain/useCase/movie/get_movies_from_watchlist_useCase.dart';
+import 'package:movies_app/domain/useCase/movie/get_popularMovies_useCase.dart';
+import 'package:movies_app/domain/useCase/movie/get_recommendedMovies_useCase.dart';
+import 'package:movies_app/domain/useCase/movie/get_upcomingMovies_useCase.dart';
 import 'package:movies_app/domain/useCase/movie/search_for_movie_useCase.dart';
 
 CategoryHttpDataSourceContract injectHttpDataSourceContract() {
@@ -74,5 +77,20 @@ DeleteFromWatchlistUseCase injectDeleteFromWatchlistUseCase() {
 
 SearchForMovieByNameUseCase injectSearchForMovieByNameUseCase() {
   return SearchForMovieByNameUseCase(
+      repositoryContract: injectMovieRepositoryContract());
+}
+
+GetPopularMoviesUseCase injectGetPopularMoviesUseCase() {
+  return GetPopularMoviesUseCase(
+      repositoryContract: injectMovieRepositoryContract());
+}
+
+GetRecommendedMoviesUseCase injectGetRecommendedMoviesUseCase() {
+  return GetRecommendedMoviesUseCase(
+      repositoryContract: injectMovieRepositoryContract());
+}
+
+GetUpcomingMoviesUseCase injectGetUpcomingMoviesUseCase() {
+  return GetUpcomingMoviesUseCase(
       repositoryContract: injectMovieRepositoryContract());
 }

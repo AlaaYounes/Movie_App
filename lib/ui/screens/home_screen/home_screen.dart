@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/ui/screens/home_screen/popular/popular_movies_section.dart';
+import 'package:movies_app/ui/screens/home_screen/recommended/recommended_movies_section.dart';
+import 'package:movies_app/ui/screens/home_screen/upcoming_movies/upcoming_movies_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                PopularMoviesSection(),
+                UpcomingMoviesSection(),
+                RecommendedMoviesView(),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:movies_app/data/api/api_constants.dart';
 import 'package:movies_app/data/model/category_response.dart';
 import 'package:movies_app/data/model/movie_details_response.dart';
 import 'package:movies_app/data/model/movie_response.dart';
+import 'package:movies_app/data/model/upcoming_movies_response.dart';
 
 class ApiManager {
   ApiManager._();
@@ -42,7 +43,7 @@ class ApiManager {
 
   getMovieDetails(String movieId) async {
     Uri url = Uri.https(
-        ApiConstants.baseUrl, ApiConstants.movieDetailsApi + '/${movieId}', {
+        ApiConstants.baseUrl, ApiConstants.movieDetailsApi + '/$movieId', {
       'api_key': ApiConstants.apiKey,
     });
     try {
@@ -65,6 +66,47 @@ class ApiManager {
       return MovieListResponse.fromJson(jsonDecode(response.body));
     } catch (e) {
       throw (e.toString());
+    }
+  }
+
+  Future<UpcomingMoviesResponse> getUpcomingMovies() async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.upcomingApi, {
+      'api_key': '61e02f380f7292131dd416f8e1e1d5ac',
+    });
+    try {
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      return UpcomingMoviesResponse.fromJson(json);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<MovieListResponse> getRecommendedMovies() async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.recommendedApi, {
+      'api_key': '61e02f380f7292131dd416f8e1e1d5ac',
+    });
+    try {
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      return MovieListResponse.fromJson(json);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<MovieListResponse> getPopularMovies() async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.popularApi, {
+      'api_key': '61e02f380f7292131dd416f8e1e1d5ac',
+      'language': 'en-US',
+      'page': '1'
+    });
+    try {
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      return MovieListResponse.fromJson(json);
+    } catch (e) {
+      rethrow;
     }
   }
 }

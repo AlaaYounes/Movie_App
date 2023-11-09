@@ -1,5 +1,6 @@
 import 'package:movies_app/data/model/movie_details_response.dart';
 import 'package:movies_app/data/model/movie_response.dart';
+import 'package:movies_app/data/model/upcoming_movies_response.dart';
 import 'package:movies_app/data/model/watchList_movie_response.dart';
 import 'package:movies_app/domain/repository/movie/movie_http_api_dataSource.dart';
 import 'package:movies_app/domain/repository/movie/movie_local_dataSource.dart';
@@ -39,5 +40,20 @@ class MovieRepositoryImpl implements MovieRepositoryContract {
   @override
   Future<MovieListResponse> searchForMovieByName(String name) {
     return httpDataSource!.searchForMovieByName(name);
+  }
+
+  @override
+  Future<MovieListResponse> getPopularMovies() {
+    return httpDataSource!.getPopularMovies();
+  }
+
+  @override
+  Future<MovieListResponse> getRecommendedMovies() {
+    return httpDataSource!.getRecommendedMovies();
+  }
+
+  @override
+  Future<UpcomingMoviesResponse> getUpcomingMovies() {
+    return httpDataSource!.getUpcomingMovies();
   }
 }

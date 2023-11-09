@@ -22,8 +22,8 @@ class FirebaseManager {
 
   Future<void> addMovieToFireStore(WatchListMovie watchListMovie) async {
     var movieCollection = getWatchListCollection();
-    var document = movieCollection.doc(watchListMovie.mId);
-    // watchListMovie.id = document.id;
+    var document = movieCollection.doc();
+    watchListMovie.id = document.id;
     return await document.set(watchListMovie);
   }
 
