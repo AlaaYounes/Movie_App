@@ -250,7 +250,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
