@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/ui/cubit/app_cubit.dart';
-import 'package:movies_app/ui/cubit/app_states.dart';
+import 'package:movies_app/ui/screens/browse_screen/browse_screen.dart';
+import 'package:movies_app/ui/screens/home_screen/home_screen.dart';
+import 'package:movies_app/ui/screens/search_screen/search_screen.dart';
+import 'package:movies_app/ui/screens/watchlist_screen/watchlist_screen.dart';
 
-class app_layout extends StatelessWidget {
+class AppLayout extends StatefulWidget {
+  @override
+  State<AppLayout> createState() => _AppLayoutState();
+}
+
+class _AppLayoutState extends State<AppLayout> {
+  int selectedIndex = 0;
+  List<Widget> screens = [
+    HomeScreen(),
+    SearchScreen(),
+    BrowseScreen(),
+    WatchList(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    AppLayoutViewModel viewModel = AppLayoutViewModel.get(context);
-
-    return BlocBuilder<AppLayoutViewModel, AppStates>(
-      builder: (context, state) => Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'HOME'),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: 'SEARCH'),
@@ -22,12 +33,11 @@ class app_layout extends StatelessWidget {
                 label: 'WATCHLIST'),
           ],
           onTap: (index) {
-            viewModel.changeBottomNavItem(index);
+            selectedIndex = index;
+            setState(() {});
           },
-          currentIndex: viewModel.selectedIndex,
-        ),
-        body: viewModel.screens[viewModel.selectedIndex],
-      ),
+          currentIndex: selectedIndex),
+      body: screens[selectedIndex],
     );
   }
 }
