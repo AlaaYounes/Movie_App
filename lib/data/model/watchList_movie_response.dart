@@ -1,5 +1,5 @@
 class WatchListMovie {
-  static String collectionPath = 'watchlist';
+  static String collectionPath = 'bookmark';
   String? id;
   String? mId;
   String? title;

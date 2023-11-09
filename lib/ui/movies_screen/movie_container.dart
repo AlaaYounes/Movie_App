@@ -19,7 +19,8 @@ class MovieContainer extends StatefulWidget {
 
 class _MovieContainerState extends State<MovieContainer> {
   MovieViewModel viewModel = MovieViewModel(
-      getMovieByCategoryIdUseCase: injectGetMovieByCategoryIdUseCase());
+      getMovieByCategoryIdUseCase: injectGetMovieByCategoryIdUseCase(),
+      getMoviesFromWatchlistUseCase: injectGetMoviesFromWatchlistUseCase());
 
   @override
   void initState() {

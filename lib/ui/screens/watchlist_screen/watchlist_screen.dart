@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:movies_app/ui/movies_screen/cubit/movie_cubit.dart';
 import 'package:movies_app/ui/movies_screen/movie_card.dart';
 import 'package:movies_app/ui/movies_screen/movie_details.dart';
 import 'package:movies_app/ui/screens/watchlist_screen/cubit.dart';
 import 'package:movies_app/ui/screens/watchlist_screen/states.dart';
 import 'package:movies_app/utils/colors.dart';
+import 'package:movies_app/utils/injection/injection.dart';
 
 class WatchList extends StatefulWidget {
   const WatchList({super.key});
@@ -15,7 +17,9 @@ class WatchList extends StatefulWidget {
 }
 
 class _WatchListState extends State<WatchList> {
-  WatchListViewModel viewModel = WatchListViewModel();
+  WatchListViewModel viewModel = WatchListViewModel(
+      getMoviesFromWatchlistUseCase: injectGetMoviesFromWatchlistUseCase(),
+      deleteFromWatchlistUseCase: injectDeleteFromWatchlistUseCase());
 
   @override
   void initState() {
@@ -49,23 +53,45 @@ class _WatchListState extends State<WatchList> {
                         child: ListView.separated(
                           separatorBuilder: (context, index) => const Divider(),
                           itemCount: response.length,
-                          itemBuilder: (context, index) => InkWell(
-                            onTap: () async {
-                              bool flag = await MovieViewModel()
-                                  .checkMovie('${response[index].id!}');
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => MovieDetails(
-                                          movieId: '${response[index].id}',
-                                          isWatched: flag)));
-                            },
-                            child: MovieCard(
-                              id: response[index].id,
-                              imageUrl: response[index].imagePath!,
-                              movieName: response[index].title!,
-                              year: response[index].year!,
-                              watchlistScreen: true,
+                          itemBuilder: (context, index) => Slidable(
+                            startActionPane: ActionPane(
+                              extentRatio: .25,
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  borderRadius: BorderRadius.circular(10),
+                                  onPressed: (context) {
+                                    viewModel.deleteWatchListMovie(
+                                        response[index].id!);
+                                  },
+                                  backgroundColor: const Color(0xFFFE4A49),
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            child: InkWell(
+                              onTap: () async {
+                                bool flag = await MovieViewModel(
+                                        getMoviesFromWatchlistUseCase:
+                                            injectGetMoviesFromWatchlistUseCase())
+                                    .checkMovie(response[index].mId!);
+                                print(flag);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MovieDetails(
+                                            movieId: '${response[index].id}',
+                                            isWatched: flag)));
+                              },
+                              child: MovieCard(
+                                id: response[index].id,
+                                imageUrl: response[index].imagePath!,
+                                movieName: response[index].title!,
+                                year: response[index].year!,
+                                watchlistScreen: true,
+                              ),
                             ),
                           ),
                         ),

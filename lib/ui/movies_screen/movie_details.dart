@@ -20,8 +20,10 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  MovieViewModel viewModel =
-      MovieViewModel(getMovieDetailsUseCase: injectGetMovieDetailsUseCase());
+  MovieViewModel viewModel = MovieViewModel(
+      getMovieDetailsUseCase: injectGetMovieDetailsUseCase(),
+      addToWatchlistUseCase: injectAddToWatchlistUseCase(),
+      getMoviesFromWatchlistUseCase: injectGetMoviesFromWatchlistUseCase());
 
   @override
   void initState() {
