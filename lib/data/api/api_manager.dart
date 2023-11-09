@@ -52,4 +52,19 @@ class ApiManager {
       throw (e.toString());
     }
   }
+
+  searchForMovieByName(String name) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.searchApi, {
+      'api_key': ApiConstants.apiKey,
+      'query': name,
+    });
+    try {
+      var response = await http.get(url);
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      return MovieListResponse.fromJson(jsonDecode(response.body));
+    } catch (e) {
+      throw (e.toString());
+    }
+  }
 }

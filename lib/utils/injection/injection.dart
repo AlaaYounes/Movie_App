@@ -16,6 +16,7 @@ import 'package:movies_app/domain/useCase/movie/delete_from_watchlist_useCase.da
 import 'package:movies_app/domain/useCase/movie/get_movieDetails.dart';
 import 'package:movies_app/domain/useCase/movie/get_movie_by_categoryId.dart';
 import 'package:movies_app/domain/useCase/movie/get_movies_from_watchlist_useCase.dart';
+import 'package:movies_app/domain/useCase/movie/search_for_movie_useCase.dart';
 
 CategoryHttpDataSourceContract injectHttpDataSourceContract() {
   return CategoryHttpDataSourceImpl(apiManager: ApiManager.getInstance());
@@ -68,5 +69,10 @@ AddToWatchlistUseCase injectAddToWatchlistUseCase() {
 
 DeleteFromWatchlistUseCase injectDeleteFromWatchlistUseCase() {
   return DeleteFromWatchlistUseCase(
+      repositoryContract: injectMovieRepositoryContract());
+}
+
+SearchForMovieByNameUseCase injectSearchForMovieByNameUseCase() {
+  return SearchForMovieByNameUseCase(
       repositoryContract: injectMovieRepositoryContract());
 }
