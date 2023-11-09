@@ -5,4 +5,5 @@ class ApiConstants {
   static String movieListApi = '/3/discover/movie';
   static String movieDetailsApi = '/3/movie';
   static String baseImage = 'https://image.tmdb.org/t/p/w500';
+  static String searchApi = '/3/search/movie';
 }

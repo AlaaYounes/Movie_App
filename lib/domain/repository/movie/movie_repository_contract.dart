@@ -7,6 +7,8 @@ abstract class MovieRepositoryContract {
 
   Future<MovieDetailsResponse> getMovieDetails(String movieId);
 
+  Future<MovieListResponse> searchForMovieByName(String name);
+
   Future<void> addMovieToWatchlist(WatchListMovie watchListMovie);
 
   Future<List<WatchListMovie>> getMoviesFromWatchList();

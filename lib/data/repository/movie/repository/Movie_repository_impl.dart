@@ -35,4 +35,9 @@ class MovieRepositoryImpl implements MovieRepositoryContract {
   Future<List<WatchListMovie>> getMoviesFromWatchList() {
     return localDataSource!.getMoviesFromWatchList();
   }
+
+  @override
+  Future<MovieListResponse> searchForMovieByName(String name) {
+    return httpDataSource!.searchForMovieByName(name);
+  }
 }

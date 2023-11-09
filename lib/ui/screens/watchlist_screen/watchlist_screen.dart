@@ -77,13 +77,14 @@ class _WatchListState extends State<WatchList> {
                                         getMoviesFromWatchlistUseCase:
                                             injectGetMoviesFromWatchlistUseCase())
                                     .checkMovie(response[index].mId!);
-                                print(flag);
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MovieDetails(
-                                            movieId: '${response[index].id}',
-                                            isWatched: flag)));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetails(
+                                        movieId: '${response[index].id}',
+                                        isWatched: flag),
+                                  ),
+                                );
                               },
                               child: MovieCard(
                                 id: response[index].id,

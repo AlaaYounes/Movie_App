@@ -17,3 +17,9 @@ class MovieSuccessState extends MovieStates {
 class MovieWatchTrailerState extends MovieStates {}
 
 class MovieAddedToFireStore extends MovieStates {}
+
+class SearchSuccessState extends MovieStates {
+  dynamic response;
+
+  SearchSuccessState({required this.response});
+}

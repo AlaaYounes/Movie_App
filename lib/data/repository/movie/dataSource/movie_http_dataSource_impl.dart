@@ -17,4 +17,9 @@ class MovieHttpDataSourceImpl implements MovieHttpDataSource {
   Future<MovieDetailsResponse> getMovieDetails(String movieId) async {
     return await ApiManager.getInstance().getMovieDetails(movieId);
   }
+
+  @override
+  Future<MovieListResponse> searchForMovieByName(String name) async {
+    return await ApiManager.getInstance().searchForMovieByName(name);
+  }
 }

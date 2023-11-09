@@ -40,7 +40,7 @@ class _MovieDetailsState extends State<MovieDetails> {
         bloc: viewModel,
         builder: (context, state) {
           if (state is MovieInitialState) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is MovieErrorState) {
@@ -49,14 +49,14 @@ class _MovieDetailsState extends State<MovieDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(state.errorMessage!),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
                     onPressed: () {
                       viewModel.getMovieDetails(widget.movieId);
                     },
-                    child: Text('try again'),
+                    child: const Text('try again'),
                   ),
                 ],
               ),
@@ -82,7 +82,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                         (context, url, downloadProgress) =>
                             CircularProgressIndicator(
                                 value: downloadProgress.progress),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                   Row(
                     children: [
@@ -109,7 +110,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       TextButton(
                         onPressed: () {
                           viewModel.watchTrailer(movieDetail.homepage!);
@@ -123,13 +124,13 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   .titleMedium!
                                   .copyWith(color: AppColor.lightGreyColor),
                             ),
-                            Icon(Icons.play_arrow),
+                            const Icon(Icons.play_arrow),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -147,7 +148,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     CircularProgressIndicator(
                                         value: downloadProgress.progress),
                             errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                                const Icon(Icons.error),
                           ),
                           Positioned(
                             right: MediaQuery.of(context).size.width * .265,
@@ -185,7 +186,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
@@ -196,8 +197,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                               children: List.generate(
                                 movieDetail.genres!.length,
                                 (index) => Container(
-                                  margin: EdgeInsets.all(1.5),
-                                  padding: EdgeInsets.symmetric(
+                                  margin: const EdgeInsets.all(1.5),
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 10),
                                   decoration: BoxDecoration(
                                     border: Border.all(
@@ -217,14 +218,14 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
                               movieDetail.overview!,
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(
@@ -233,7 +234,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   Icons.star,
                                   color: AppColor.yellowColor,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
