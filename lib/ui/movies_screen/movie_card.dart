@@ -1,30 +1,74 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/data/api/api_constants.dart';
+import 'package:movies_app/utils/colors.dart';
 
-class MovieCard extends StatelessWidget {
+class MovieCard extends StatefulWidget {
+  String? id;
   String imageUrl;
   String movieName;
   String year;
+  bool? isWatched;
+  bool? watchlistScreen;
 
-  MovieCard(
-      {required this.imageUrl, required this.movieName, required this.year});
+  MovieCard({
+    this.id,
+    required this.imageUrl,
+    required this.movieName,
+    required this.year,
+    this.isWatched,
+    this.watchlistScreen,
+  });
 
+  @override
+  State<MovieCard> createState() => _MovieCardState();
+}
+
+class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CachedNetworkImage(
-          width: MediaQuery.of(context).size.width * .3,
-          height: MediaQuery.of(context).size.height * .2,
-          imageUrl: '${ApiConstants.baseImage + imageUrl}',
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(value: downloadProgress.progress),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+        Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: CachedNetworkImage(
+                width: MediaQuery.of(context).size.width * .3,
+                height: MediaQuery.of(context).size.height * .2,
+                imageUrl: ApiConstants.baseImage + widget.imageUrl,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    CircularProgressIndicator(value: downloadProgress.progress),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+            Visibility(
+              visible: widget.watchlistScreen == true ? true : false,
+              child: Positioned(
+                right: MediaQuery.of(context).size.width * .195,
+                bottom: MediaQuery.of(context).size.width * .325,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Icon(
+                      Icons.bookmark,
+                      color: AppColor.yellowColor,
+                      size: 50,
+                    ),
+                    Icon(
+                      Icons.check,
+                      color: AppColor.whiteColor,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         Expanded(
@@ -32,13 +76,13 @@ class MovieCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                movieName,
+                widget.movieName,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Text(year, style: Theme.of(context).textTheme.titleSmall),
+              Text(widget.year, style: Theme.of(context).textTheme.titleSmall),
             ],
           ),
         ),

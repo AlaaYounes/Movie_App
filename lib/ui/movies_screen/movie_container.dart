@@ -19,7 +19,8 @@ class MovieContainer extends StatefulWidget {
 
 class _MovieContainerState extends State<MovieContainer> {
   MovieViewModel viewModel = MovieViewModel(
-      getMovieByCategoryIdUseCase: injectGetMovieByCategoryIdUseCase());
+      getMovieByCategoryIdUseCase: injectGetMovieByCategoryIdUseCase(),
+      getMoviesFromWatchlistUseCase: injectGetMoviesFromWatchlistUseCase());
 
   @override
   void initState() {
@@ -70,21 +71,25 @@ class _MovieContainerState extends State<MovieContainer> {
                     padding: const EdgeInsets.all(15),
                     child: ListView.separated(
                         itemBuilder: (context, index) => InkWell(
-                              onTap: () {
+                              onTap: () async {
+                                bool flag = await viewModel
+                                    .checkMovie('${movieList[index].id!}');
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MovieDetails(
-                                              movieId:
-                                                  '${movieList[index].id!}',
-                                            )));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetails(
+                                      movieId: '${movieList[index].id!}',
+                                      isWatched: flag,
+                                    ),
+                                  ),
+                                );
                               },
                               child: MovieCard(
                                   imageUrl: movieList[index].posterPath!,
                                   movieName: movieList[index].title!,
                                   year: movieList[index].releaseDate!),
                             ),
-                        separatorBuilder: (context, index) => Divider(),
+                        separatorBuilder: (context, index) => const Divider(),
                         itemCount: movieList.length),
                   ),
                 ),

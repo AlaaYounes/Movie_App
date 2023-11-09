@@ -15,3 +15,5 @@ class MovieSuccessState extends MovieStates {
 }
 
 class MovieWatchTrailerState extends MovieStates {}
+
+class MovieAddedToFireStore extends MovieStates {}

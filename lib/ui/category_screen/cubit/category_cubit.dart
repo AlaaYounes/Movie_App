@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/domain/category/useCase/category/get_category.dart';
+import 'package:movies_app/domain/useCase/category/get_category.dart';
 import 'package:movies_app/ui/category_screen/cubit/category_states.dart';
 
 class CategoryViewModel extends Cubit<CategoryStates> {

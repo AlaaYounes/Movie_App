@@ -1,4 +1,4 @@
-import 'package:movies_app/domain/category/repository/movie/movie_repository_contract.dart';
+import 'package:movies_app/domain/repository/movie/movie_repository_contract.dart';
 
 class GetMovieDetailsUseCase {
   MovieRepositoryContract repositoryContract;
