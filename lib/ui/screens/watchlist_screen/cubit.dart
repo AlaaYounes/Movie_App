@@ -12,8 +12,8 @@ class WatchListViewModel extends Cubit<WatchListStates> {
     emit(WatchListSuccessState(response: response));
   }
 
-  Future deleteWatchListMovie(WatchListMovie movie) async {
-    await FirebaseManager.deleteWatchListMovie(movie);
+  Future<void> deleteWatchListMovie(String id) async {
+    FirebaseManager.deleteWatchListMovie(id);
     emit(WatchListDeleteMovieState());
   }
 }

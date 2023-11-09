@@ -11,7 +11,9 @@ class FirebaseManager {
 
   static Future<void> addMovieToFireStore(WatchListMovie watchListMovie) async {
     var movieCollection = getWatchListCollection();
-    await movieCollection.add(watchListMovie);
+    var document = movieCollection.doc();
+    watchListMovie.id = document.id;
+    return await document.set(watchListMovie);
   }
 
   static Future<List<WatchListMovie>> getMoviesFromFireStore() async {
@@ -20,8 +22,8 @@ class FirebaseManager {
     return querySnapShot.docs.map((e) => e.data()).toList();
   }
 
-  static Future<void> deleteWatchListMovie(WatchListMovie movie) async {
-    print('hello from delete');
-    return await getWatchListCollection().doc('${movie.id}').delete();
+  static Future<void> deleteWatchListMovie(String id) async {
+    var getWatchlistCollection = getWatchListCollection();
+    return await getWatchlistCollection.doc(id).delete();
   }
 }

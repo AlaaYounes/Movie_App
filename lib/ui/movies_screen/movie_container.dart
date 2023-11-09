@@ -74,20 +74,21 @@ class _MovieContainerState extends State<MovieContainer> {
                                 bool flag = await viewModel
                                     .checkMovie('${movieList[index].id!}');
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MovieDetails(
-                                              movieId:
-                                                  '${movieList[index].id!}',
-                                              isWatched: flag,
-                                            )));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetails(
+                                      movieId: '${movieList[index].id!}',
+                                      isWatched: flag,
+                                    ),
+                                  ),
+                                );
                               },
                               child: MovieCard(
                                   imageUrl: movieList[index].posterPath!,
                                   movieName: movieList[index].title!,
                                   year: movieList[index].releaseDate!),
                             ),
-                        separatorBuilder: (context, index) => Divider(),
+                        separatorBuilder: (context, index) => const Divider(),
                         itemCount: movieList.length),
                   ),
                 ),

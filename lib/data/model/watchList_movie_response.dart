@@ -1,13 +1,15 @@
 class WatchListMovie {
   static String collectionPath = 'watchlist';
-  num? id;
+  String? id;
+  String? mId;
   String? title;
   String? imagePath;
   String? year;
   bool? isWatched;
 
   WatchListMovie(
-      {required this.id,
+      {this.id,
+      this.mId,
       required this.isWatched,
       required this.title,
       required this.year,
@@ -15,7 +17,8 @@ class WatchListMovie {
 
   WatchListMovie.fromJson(Map<String, dynamic> map)
       : this(
-          id: map['id'],
+    id: map['id'],
+          mId: map['mId'],
           title: map['title'],
           year: map['year'],
           imagePath: map['imagePath'],
@@ -25,6 +28,7 @@ class WatchListMovie {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'mId': mId,
       'title': title,
       'year': year,
       'imagePath': imagePath,

@@ -153,12 +153,14 @@ class _MovieDetailsState extends State<MovieDetails> {
                             child: InkWell(
                               onTap: () {
                                 WatchListMovie movie = WatchListMovie(
-                                    id: movieDetail.id,
+                                    mId: movieDetail.id.toString(),
                                     isWatched: movieDetail.isWatched,
                                     title: movieDetail.title,
                                     year: movieDetail.releaseDate,
                                     imagePath: movieDetail.posterPath);
                                 viewModel.addToWatchlist(movie);
+                                widget.isWatched = true;
+                                setState(() {});
                               },
                               child: Stack(
                                 alignment: Alignment.center,
