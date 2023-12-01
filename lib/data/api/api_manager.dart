@@ -96,11 +96,7 @@ class ApiManager {
   }
 
   Future<MovieListResponse> getPopularMovies() async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.popularApi, {
-      'api_key': '61e02f380f7292131dd416f8e1e1d5ac',
-      'language': 'en-US',
-      'page': '1'
-    });
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.popularApi, {'api_key': ApiConstants.apiKey, 'language': 'en-US', 'page': '1'});
     try {
       var response = await http.get(url);
       var json = jsonDecode(response.body);

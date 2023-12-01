@@ -38,7 +38,6 @@ dependencies:
   flutter_native_splash: ^2.2.19
   flutter_bloc: ^8.1.3
   font_awesome_flutter: ^10.4.0
-  cached_network_image: ^3.2.3
   http: ^0.13.6
   url_launcher: ^6.1.11
   cloud_firestore: ^4.12.2
@@ -46,6 +45,7 @@ dependencies:
   flutter_screenutil: ^5.7.0
   firebase_core: ^2.21.0
   flutter_slidable: ^3.0.1
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:
