@@ -8,7 +8,7 @@ import '../../../../data/model/upcoming_movies_response.dart';
 class UpcomingMoviesItem extends StatelessWidget {
   UpcomingMovie movie;
 
-  UpcomingMoviesItem({required this.movie});
+  UpcomingMoviesItem({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {

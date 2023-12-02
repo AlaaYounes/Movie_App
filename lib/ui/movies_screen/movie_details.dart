@@ -13,7 +13,7 @@ class MovieDetails extends StatefulWidget {
   String movieId;
   bool isWatched;
 
-  MovieDetails({required this.movieId, required this.isWatched});
+  MovieDetails({super.key, required this.movieId, required this.isWatched});
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
@@ -49,7 +49,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(state.errorMessage!),
+                  Text(state.errorMessage),
                   const SizedBox(
                     height: 10,
                   ),
@@ -67,7 +67,7 @@ class _MovieDetailsState extends State<MovieDetails> {
             return Scaffold(
               appBar: AppBar(
                 title: Text(
-                  movieDetail.title!,
+                  movieDetail.title ?? '',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
@@ -96,7 +96,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: Text(
-                                movieDetail.title!,
+                                movieDetail.title ?? '',
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ),
@@ -104,7 +104,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 15),
                               child: Text(
-                                movieDetail.releaseDate!,
+                                movieDetail.releaseDate ?? '',
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                             ),

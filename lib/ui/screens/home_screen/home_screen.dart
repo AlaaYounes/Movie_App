@@ -8,11 +8,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(15),
+            padding: EdgeInsets.all(15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

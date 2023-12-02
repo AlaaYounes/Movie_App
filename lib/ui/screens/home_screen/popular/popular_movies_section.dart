@@ -13,6 +13,8 @@ import 'cubit/popular_movies_view_model.dart';
 import 'cubit/states.dart';
 
 class PopularMoviesSection extends StatefulWidget {
+  const PopularMoviesSection({super.key});
+
   @override
   State<PopularMoviesSection> createState() => _PopularMoviesSectionState();
 }

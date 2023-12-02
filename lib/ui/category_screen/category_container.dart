@@ -8,7 +8,7 @@ import '../../data/model/genres_response.dart';
 class CategoryContainer extends StatelessWidget {
   List<Genres>? categoryList;
 
-  CategoryContainer({required this.categoryList});
+  CategoryContainer({super.key, required this.categoryList});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,12 @@ class CategoryContainer extends StatelessWidget {
               'Browse Category',
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 10,
                 ),

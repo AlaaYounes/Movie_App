@@ -14,18 +14,20 @@ void main() async {
   await FirebaseFirestore.instance.disableNetwork();
 
   FirebaseFirestore.instance.settings =
-      Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
-  runApp(MyApp());
+      const Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: const Size(412, 892),
         builder: (BuildContext context, Widget? child) {
           return MaterialApp(
-            home: AppLayout(),
+            home: const AppLayout(),
             debugShowCheckedModeBanner: false,
             theme: AppTheme.darkTheme,
             darkTheme: AppTheme.darkTheme,

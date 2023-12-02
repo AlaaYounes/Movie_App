@@ -12,6 +12,7 @@ class MovieCard extends StatefulWidget {
   bool? watchlistScreen;
 
   MovieCard({
+    super.key,
     this.id,
     required this.imageUrl,
     required this.movieName,

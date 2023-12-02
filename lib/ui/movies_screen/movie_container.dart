@@ -11,7 +11,8 @@ class MovieContainer extends StatefulWidget {
   String categoryId;
   String categoryName;
 
-  MovieContainer({required this.categoryId, required this.categoryName});
+  MovieContainer(
+      {super.key, required this.categoryId, required this.categoryName});
 
   @override
   State<MovieContainer> createState() => _MovieContainerState();
@@ -42,7 +43,7 @@ class _MovieContainerState extends State<MovieContainer> {
           bloc: viewModel,
           builder: (context, state) {
             if (state is MovieInitialState) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is MovieErrorState) {
@@ -50,15 +51,15 @@ class _MovieContainerState extends State<MovieContainer> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(state.errorMessage!),
-                    SizedBox(
+                    Text(state.errorMessage),
+                    const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
                       onPressed: () {
                         viewModel.getMovieByCategoryId(widget.categoryId);
                       },
-                      child: Text('try again'),
+                      child: const Text('try again'),
                     ),
                   ],
                 ),

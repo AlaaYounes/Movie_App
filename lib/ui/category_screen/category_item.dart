@@ -4,7 +4,7 @@ class CategoryItemWidget extends StatelessWidget {
   String name;
   String assetImage;
 
-  CategoryItemWidget({required this.name, required this.assetImage});
+  CategoryItemWidget({super.key, required this.name, required this.assetImage});
 
   @override
   Widget build(BuildContext context) {

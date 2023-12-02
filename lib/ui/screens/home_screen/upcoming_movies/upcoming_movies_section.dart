@@ -10,6 +10,8 @@ import 'cubit/states.dart';
 import 'cubit/upcoming_movies_view_model.dart';
 
 class UpcomingMoviesSection extends StatefulWidget {
+  const UpcomingMoviesSection({super.key});
+
   @override
   State<UpcomingMoviesSection> createState() => _UpcomingMoviesSectionState();
 }

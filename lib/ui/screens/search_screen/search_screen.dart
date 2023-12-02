@@ -9,6 +9,8 @@ import 'package:movies_app/utils/colors.dart';
 import 'package:movies_app/utils/injection/injection.dart';
 
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
@@ -35,6 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
               padding: const EdgeInsets.all(15),
               child: TextFormField(
                 controller: searchController,
+                style: Theme.of(context).textTheme.bodyMedium,
                 decoration: InputDecoration(
                   fillColor: AppColor.bookmarkColor,
                   filled: true,
@@ -68,10 +71,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is MovieErrorState) {
-                  return Center(
+                  return const Center(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text('movie is not found'),
                           SizedBox(
                             height: 10,
@@ -82,13 +85,13 @@ class _SearchScreenState extends State<SearchScreen> {
                   List<Results> movieList = state.response;
                   return Expanded(
                     child: ListView.separated(
-                      itemCount: movieList!.length,
+                      itemCount: movieList.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: InkWell(
                             child: MovieCard(
-                                imageUrl: movieList[index]?.posterPath ?? '',
+                                imageUrl: movieList[index].posterPath ?? '',
                                 movieName: movieList[index].title!,
                                 year: movieList[index].releaseDate!),
                             onTap: () async {

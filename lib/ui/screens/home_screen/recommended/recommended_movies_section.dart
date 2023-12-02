@@ -56,7 +56,7 @@ class _RecommendedMoviesViewState extends State<RecommendedMoviesView> {
                   margin: EdgeInsets.only(top: 15.h),
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    itemCount: movieList!.length,
+                    itemCount: movieList.length,
                     separatorBuilder: (context, index) => const SizedBox(
                       width: 7.5,
                     ),

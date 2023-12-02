@@ -7,6 +7,8 @@ import 'package:movies_app/ui/category_screen/cubit/category_states.dart';
 import 'package:movies_app/utils/injection/injection.dart';
 
 class BrowseScreen extends StatefulWidget {
+  const BrowseScreen({super.key});
+
   @override
   State<BrowseScreen> createState() => _BrowseScreenState();
 }
@@ -31,15 +33,15 @@ class _BrowseScreenState extends State<BrowseScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(state.errorMessage!),
-                  SizedBox(
+                  Text(state.errorMessage),
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
                     onPressed: () {
                       viewModel.getCategory();
                     },
-                    child: Text('try again'),
+                    child: const Text('try again'),
                   ),
                 ],
               ),
@@ -48,7 +50,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
             List<Genres>? categoryList = state.response;
             return CategoryContainer(categoryList: categoryList);
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

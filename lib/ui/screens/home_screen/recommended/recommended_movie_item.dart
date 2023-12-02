@@ -7,7 +7,7 @@ import 'package:movies_app/utils/colors.dart';
 class RecommendedMovieItem extends StatelessWidget {
   dynamic movie;
 
-  RecommendedMovieItem({required this.movie});
+  RecommendedMovieItem({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,12 @@ class RecommendedMovieItem extends StatelessWidget {
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       CircularProgressIndicator(
                           value: downloadProgress.progress),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
@@ -44,7 +44,7 @@ class RecommendedMovieItem extends StatelessWidget {
                 Icons.star,
                 color: AppColor.yellowColor,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Text(
@@ -56,7 +56,7 @@ class RecommendedMovieItem extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(

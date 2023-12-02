@@ -5,6 +5,8 @@ import 'package:movies_app/ui/screens/search_screen/search_screen.dart';
 import 'package:movies_app/ui/screens/watchlist_screen/watchlist_screen.dart';
 
 class AppLayout extends StatefulWidget {
+  const AppLayout({super.key});
+
   @override
   State<AppLayout> createState() => _AppLayoutState();
 }
@@ -12,10 +14,10 @@ class AppLayout extends StatefulWidget {
 class _AppLayoutState extends State<AppLayout> {
   int selectedIndex = 0;
   List<Widget> screens = [
-    HomeScreen(),
-    SearchScreen(),
-    BrowseScreen(),
-    WatchList(),
+    const HomeScreen(),
+    const SearchScreen(),
+    const BrowseScreen(),
+    const WatchList(),
   ];
 
   @override

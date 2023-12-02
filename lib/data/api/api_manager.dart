@@ -43,7 +43,7 @@ class ApiManager {
 
   getMovieDetails(String movieId) async {
     Uri url = Uri.https(
-        ApiConstants.baseUrl, ApiConstants.movieDetailsApi + '/$movieId', {
+        ApiConstants.baseUrl, '${ApiConstants.movieDetailsApi}/$movieId', {
       'api_key': ApiConstants.apiKey,
     });
     try {
@@ -96,7 +96,8 @@ class ApiManager {
   }
 
   Future<MovieListResponse> getPopularMovies() async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.popularApi, {'api_key': ApiConstants.apiKey, 'language': 'en-US', 'page': '1'});
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.popularApi,
+        {'api_key': ApiConstants.apiKey, 'page': '1'});
     try {
       var response = await http.get(url);
       var json = jsonDecode(response.body);
