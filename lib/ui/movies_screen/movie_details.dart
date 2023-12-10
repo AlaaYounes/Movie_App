@@ -80,9 +80,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                         ApiConstants.baseImage + movieDetail.backdropPath!,
                     fit: BoxFit.fill,
                     progressIndicatorBuilder:
-                        (context, url, downloadProgress) =>
-                            CircularProgressIndicator(
-                                value: downloadProgress.progress),
+                        (context, url, downloadProgress) => Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress),
+                    ),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                   ),
@@ -145,9 +146,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                             imageUrl: ApiConstants.baseImage +
                                 movieDetail.posterPath!,
                             progressIndicatorBuilder:
-                                (context, url, downloadProgress) =>
-                                    CircularProgressIndicator(
-                                        value: downloadProgress.progress),
+                                (context, url, downloadProgress) => Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            ),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
                           ),
@@ -270,9 +272,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                         ApiConstants.baseImage + movieDetail.backdropPath!,
                     fit: BoxFit.fill,
                     progressIndicatorBuilder:
-                        (context, url, downloadProgress) =>
-                            CircularProgressIndicator(
-                                value: downloadProgress.progress),
+                        (context, url, downloadProgress) => Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress),
+                    ),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                   ),
@@ -335,9 +338,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                             imageUrl: ApiConstants.baseImage +
                                 movieDetail.posterPath!,
                             progressIndicatorBuilder:
-                                (context, url, downloadProgress) =>
-                                    CircularProgressIndicator(
-                                        value: downloadProgress.progress),
+                                (context, url, downloadProgress) => Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            ),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
                           ),

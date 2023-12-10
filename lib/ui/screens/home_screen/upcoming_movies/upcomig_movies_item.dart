@@ -23,8 +23,10 @@ class UpcomingMoviesItem extends StatelessWidget {
           width: double.infinity,
           fit: BoxFit.fill,
           placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).primaryColor,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
           errorWidget: (context, url, child) => const Icon(Icons.error)),

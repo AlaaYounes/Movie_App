@@ -42,7 +42,9 @@ class _MovieCardState extends State<MovieCard> {
                 height: MediaQuery.of(context).size.height * .2,
                 imageUrl: ApiConstants.baseImage + widget.imageUrl,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    CircularProgressIndicator(value: downloadProgress.progress),
+                    Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress)),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),

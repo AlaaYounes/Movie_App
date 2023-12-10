@@ -37,10 +37,13 @@ class _PopularMoviesSectionState extends State<PopularMoviesSection> {
       builder: (context, state) {
         if (state is PopularMoviesLoadingState) {
           return Center(
-              child: CircularProgressIndicator(
-                  color: Theme.of(context).primaryColor));
+            child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor),
+          );
         } else if (state is PopularMoviesErrorState) {
-          return Center(child: Text(state.errorMessage));
+          return Center(
+            child: Text(state.errorMessage),
+          );
         } else if (state is PopularMoviesSuccessState) {
           List<Results> movieList = state.movies;
 
@@ -59,8 +62,8 @@ class _PopularMoviesSectionState extends State<PopularMoviesSection> {
                             fit: BoxFit.contain,
                             imageUrl:
                                 ApiConstants.baseImage + movie.backdropPath!,
-                            placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
                           ),
@@ -89,7 +92,9 @@ class _PopularMoviesSectionState extends State<PopularMoviesSection> {
                                         imageUrl: ApiConstants.baseImage +
                                             movie.posterPath!,
                                         placeholder: (context, url) =>
-                                            const CircularProgressIndicator(),
+                                            const Center(
+                                                child:
+                                                    CircularProgressIndicator()),
                                         errorWidget: (context, url, error) =>
                                             const Icon(Icons.error),
                                       ),

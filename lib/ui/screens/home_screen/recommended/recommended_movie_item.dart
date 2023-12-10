@@ -27,8 +27,10 @@ class RecommendedMovieItem extends StatelessWidget {
                   fit: BoxFit.fill,
                   imageUrl: ApiConstants.baseImage + movie.posterPath!,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      CircularProgressIndicator(
-                          value: downloadProgress.progress),
+                      Center(
+                    child: CircularProgressIndicator(
+                        value: downloadProgress.progress),
+                  ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
